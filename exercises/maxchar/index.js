@@ -6,17 +6,17 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-  const charMap = {};
-  let highestNum = 0;
-  let highestChar = null;
+  const chars = {};
   for (char of str) {
-    !charMap[char] ? charMap[char] = 1 : charMap[char]++;
-    if (charMap[char] > highestNum) {
-      highestNum = charMap[char];
-      highestChar = char
+    chars[char] = chars[char] + 1 || 1
+  }
+  const allVals = Object.values(chars);
+  const maxOccurrence = Math.max(...allVals)
+  for (char in chars) {
+    if (chars[char] === maxOccurrence) {
+      return char;
     }
   }
-  return highestChar;
 }
 
 
